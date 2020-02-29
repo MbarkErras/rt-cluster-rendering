@@ -6,7 +6,7 @@
 /*   By: merras <merras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/21 17:55:08 by merras            #+#    #+#             */
-/*   Updated: 2020/02/29 23:00:47 by merras           ###   ########.fr       */
+/*   Updated: 2020/02/29 23:14:35 by merras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	read_(int fd, char *buffer, size_t size)
 	{
 		if ((ret = read(fd, buffer + size - remaining, remaining)) < 1)
 			return (ret);
-		log_debug("reading a slice of %d bytes.", ret);
+		LOG_DEBUG("reading a slice of %d bytes.", ret);
 		remaining -= ret;
 	}
 	return (size);
@@ -38,7 +38,7 @@ int	write_(int fd, char *buffer, size_t size)
 	{
 		if ((ret = write(fd, buffer + size - remaining, remaining)) < 1)
 			return (ret);
-		log_debug("writing a slice of %d bytes.", ret);
+		LOG_DEBUG("writing a slice of %d bytes.", ret);
 		remaining -= ret;
 	}
 	return (size);
