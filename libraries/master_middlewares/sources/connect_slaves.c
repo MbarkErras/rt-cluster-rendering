@@ -6,7 +6,7 @@
 /*   By: merras <merras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 06:12:35 by merras            #+#    #+#             */
-/*   Updated: 2020/03/02 12:53:03 by merras           ###   ########.fr       */
+/*   Updated: 2020/03/02 21:26:01 by merras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,8 @@ int		connect_slave(int i, t_cluster *cluster)
 		delete_nodes(cluster->nodes, cluster->size);
 		return (1);
 	}
-	err = ERROR_WRAPPER(pthread_create(&cluster->nodes[i].tid, NULL, slave_routine,
-		&(cluster->nodes[i])));
+	err = ERROR_WRAPPER(pthread_create(&cluster->nodes[i].tid,
+		NULL, slave_routine, &(cluster->nodes[i])));
 	return (err);
 }
 

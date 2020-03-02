@@ -6,7 +6,7 @@
 /*   By: merras <merras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 15:45:31 by abiri             #+#    #+#             */
-/*   Updated: 2020/03/02 16:05:09 by merras           ###   ########.fr       */
+/*   Updated: 2020/03/02 19:08:21 by merras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,8 @@ void	ft_send_final_image(t_rtv *rtv)
 	if (fd < 0)
 		ft_putstr_fd(strerror(errno), 2);
 	size = (rtv->max_h - rtv->min_h) * rtv->scene.width * 4;
-	ft_putstr_fd("\n\n\n\n\n\n\n\n", fd);
-	ft_putstr_fd(ft_itoa((int)rtv->min_h), fd);
-	ft_putchar_fd('\n', fd);
-	ft_putstr_fd(ft_itoa((int)rtv->max_h), fd);
-	ft_putstr_fd("\n\n\n\n\n\n\n\n", fd);
 	write(1, &size, 4);
-	write(1, rtv->mlx.img.data + (int)rtv->min_h * rtv->scene.width * 4, size);
+	write(1, rtv->mlx.img.data + rtv->scene.width * (int)rtv->min_h, size);
 }
 
 int	ft_headless_raytracer(t_rtv	*rtv, char *filename)

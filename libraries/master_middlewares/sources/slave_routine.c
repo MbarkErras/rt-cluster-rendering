@@ -6,7 +6,7 @@
 /*   By: merras <merras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 09:09:11 by merras            #+#    #+#             */
-/*   Updated: 2020/03/02 13:49:37 by merras           ###   ########.fr       */
+/*   Updated: 2020/03/02 17:08:48 by merras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	success_response_dolan(t_cluster *cluster, t_dstruct_node *task)
 			t_dstruct_create_node(task->content, task->content_size));
 		pthread_mutex_unlock(&cluster->computation.done_queue_mutex);
 		free(task);
+		pthread_exit(NULL);
 	}
 }
 

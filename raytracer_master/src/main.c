@@ -6,7 +6,7 @@
 /*   By: merras <merras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 08:48:50 by abiri             #+#    #+#             */
-/*   Updated: 2020/03/02 15:21:06 by merras           ###   ########.fr       */
+/*   Updated: 2020/03/02 19:48:15 by merras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,13 +73,6 @@ int	ft_display_loop(void *content)
 	return (0);
 }
 
-int	computation_compare_middleware(void *first, void *second)
-{
-	(void)first;
-	(void)second;
-	return (0);
-}
-
 int	tasks_sorting_middleware(void *t1, void *t2)
 {
 	int offset1;
@@ -87,7 +80,7 @@ int	tasks_sorting_middleware(void *t1, void *t2)
 
 	ft_memcpy(&offset1, CAST(t1, t_task *)->request->data, sizeof(int));
 	ft_memcpy(&offset2, CAST(t2, t_task *)->request->data, sizeof(int));
-	return (offset1 < offset2);
+	return (offset1 > offset2);
 }
 
 int	ft_show_results(t_cluster *cluster, t_master_env *env)

@@ -6,7 +6,7 @@
 /*   By: merras <merras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 06:29:14 by merras            #+#    #+#             */
-/*   Updated: 2020/03/02 15:18:07 by merras           ###   ########.fr       */
+/*   Updated: 2020/03/02 19:32:29 by merras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void	**fetch_computation_blob(t_cluster *cluster,
 	void			**blob;
 	int				i;
 
+	(void)compare;
 	if (fetch_computation_blob_wait(cluster))
 		return (NULL);
 	if (compare)
