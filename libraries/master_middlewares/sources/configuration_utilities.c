@@ -6,7 +6,7 @@
 /*   By: merras <merras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 04:32:39 by merras            #+#    #+#             */
-/*   Updated: 2020/03/02 05:08:46 by merras           ###   ########.fr       */
+/*   Updated: 2020/03/02 10:24:05 by merras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ static char	**read_configuration_file(char *filename)
 static int	get_program_fd(char *entry)
 {
 	char	*colon;
-	int		fd;
 
 	if (!entry || !(colon = ft_strchr(entry, ':')))
 		return (-1);
@@ -79,7 +78,6 @@ static int	assign_nodes_addresses(char **configuration_lines,
 				t_cluster *cluster)
 {
 	int i;
-	int status;
 
 	i = -1;
 	cluster->size = 0;
@@ -91,7 +89,7 @@ static int	assign_nodes_addresses(char **configuration_lines,
 	}
 	if (!(cluster->nodes = (t_slave *)malloc(sizeof(t_slave) * cluster->size)))
 		return (1);
-	while (++i < cluster->size)
+	while (++i < (int)cluster->size)
 	{
 		pthread_mutex_init(&cluster->nodes[i].mutex, NULL);
 		cluster->nodes[i].ip = configuration_lines[i + 1];
