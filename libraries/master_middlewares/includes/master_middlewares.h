@@ -6,7 +6,7 @@
 /*   By: merras <merras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 00:56:37 by merras            #+#    #+#             */
-/*   Updated: 2020/03/02 10:29:22 by merras           ###   ########.fr       */
+/*   Updated: 2020/03/02 10:44:41 by merras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,13 @@ typedef struct	s_task
 
 int				init_cluster(char *configuration_file, t_cluster *cluster);
 int				connect_slaves(t_cluster *cluster);
+int				init_slaves(t_cluster *cluster);
 
 void			*cluster_loadbalancer(void *cluster);
 void			delete_nodes(t_slave *nodes, int size);
 
+void	**fetch_computation_blob(t_cluster *cluster,
+			int (*compare)(void *, void *));
 int				init_computation(t_cluster *cluster);
 void			queue_task(t_cluster *cluster, t_packet *request);
 
