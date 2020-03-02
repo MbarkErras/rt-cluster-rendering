@@ -6,7 +6,7 @@
 /*   By: merras <merras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 08:50:37 by abiri             #+#    #+#             */
-/*   Updated: 2020/02/21 22:43:44 by merras           ###   ########.fr       */
+/*   Updated: 2020/03/02 22:31:07 by merras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,8 @@ typedef struct	s_master_env
 {
 	t_mlx	mlx;
 }				t_master_env;
+
+int	ft_send_scene(t_cluster *cluster, char *filename);
+int	ft_send_tasks(t_cluster *cluster);
 
 #endif
