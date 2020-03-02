@@ -6,7 +6,7 @@
 /*   By: merras <merras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 08:48:50 by abiri             #+#    #+#             */
-/*   Updated: 2020/03/02 10:43:38 by merras           ###   ########.fr       */
+/*   Updated: 2020/03/02 15:21:06 by merras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,11 +80,21 @@ int	computation_compare_middleware(void *first, void *second)
 	return (0);
 }
 
+int	tasks_sorting_middleware(void *t1, void *t2)
+{
+	int offset1;
+	int offset2;
+
+	ft_memcpy(&offset1, CAST(t1, t_task *)->request->data, sizeof(int));
+	ft_memcpy(&offset2, CAST(t2, t_task *)->request->data, sizeof(int));
+	return (offset1 < offset2);
+}
+
 int	ft_show_results(t_cluster *cluster, t_master_env *env)
 {
 	void	**results;
 
-	results = fetch_computation_blob(cluster, NULL/*computation_compare_middleware*/);
+	results = fetch_computation_blob(cluster, tasks_sorting_middleware);
 	if (results && results[0])
 	{
 		dprintf(2, "size of image is : %d\n", CAST((results[0]), t_task *)->response->size);
@@ -93,9 +103,13 @@ int	ft_show_results(t_cluster *cluster, t_master_env *env)
 		int offset = 0;
 		while (results[++i])
 		{
+			int range[2];
+			ft_memcpy(range, CAST((results[i]), t_task *)->request->data, sizeof(int) * 2);
+			LOG_INFO("appending result of range %d %d.", range[0], range[1]);
 			ft_memcpy((void *)env->mlx.img.data + offset, CAST((results[i]), t_task *)->response->data, CAST((results[i]), t_task *)->response->size);
 			offset += CAST((results[i]), t_task *)->response->size;
 		}
+		LOG_DEBUG("=%d.", offset);
 		mlx_put_image_to_window(env->mlx.mlx_ptr, env->mlx.win, env->mlx.img.img_ptr, 0, 0);
 		return (1);
 	}
