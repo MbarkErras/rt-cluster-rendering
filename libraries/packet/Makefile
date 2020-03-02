@@ -7,7 +7,7 @@ OBJS = $(SRCS:.c=.o)
 
 SRCS_DIR = sources
 OBJS_DIR = build
-INCLUDES = includes ../log
+INCLUDES = includes ../log/includes
 
 SRCS_PATH = $(addprefix $(SRCS_DIR)/, $(SRCS))
 OBJS_PATH = $(addprefix $(OBJS_DIR)/, $(OBJS))

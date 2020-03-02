@@ -6,7 +6,7 @@
 /*   By: merras <merras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 17:17:15 by merras            #+#    #+#             */
-/*   Updated: 2020/03/01 23:45:54 by merras           ###   ########.fr       */
+/*   Updated: 2020/03/02 00:26:07 by merras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,30 +31,31 @@
 
 # define SLAVED_PROGRAM_NAME "slaved_program"
 # define PORT 1337
-typedef struct sockaddr_in SA;
 # define ERROR_WRAPPER(cond) err ? err : cond
 
-typedef struct  s_program
-{
-    pid_t       pid;
-    int         w_stdin;
-    int         r_stdout;
-}               t_program;
+typedef struct sockaddr_in	t_sa;
 
-typedef struct  s_slaved
+typedef struct	s_program
 {
-    int             sockets[2];
-    pthread_mutex_t packets_queue_mx;
-    t_dstruct_list  packets_queue;
+	pid_t	pid;
+	int		w_stdin;
+	int		r_stdout;
+}				t_program;
+
+typedef struct	s_slaved
+{
+	int				sockets[2];
+	pthread_mutex_t	packets_queue_mx;
+	t_dstruct_list	packets_queue;
 	pthread_t		tid[2];
 	t_program		program;
-}               t_slaved;
+}				t_slaved;
 
-t_packet    requests_dispatcher(t_packet *request, t_slaved *slaved);
-t_packet	execute_req_init(t_packet *request, t_slaved *slaved);
-t_packet    execute_req_computation(t_packet *request, t_program *program);
-t_packet    execute_req_scene(t_packet *request, t_program *program);
-void		slaved_cleanup(t_slaved *slaved);
+t_packet		requests_dispatcher(t_packet *request, t_slaved *slaved);
+t_packet		execute_req_init(t_packet *request, t_slaved *slaved);
+t_packet		execute_req_computation(t_packet *request, t_program *program);
+t_packet		execute_req_scene(t_packet *request, t_program *program);
+void			slaved_cleanup(t_slaved *slaved);
 
 # define TYPE_T_REQUEST_INIT 0
 # define TYPE_T_REQUEST_COMPUTATION 1
@@ -63,7 +64,7 @@ void		slaved_cleanup(t_slaved *slaved);
 # define TYPE_T_RESPONSE_SUCCESS 0
 # define TYPE_T_RESPONSE_FAILURE 1
 
-void		*receive_packets(void *slaved);
-void		*handle_packets(void *slaved);
+void			*receive_packets(void *slaved);
+void			*handle_packets(void *slaved);
 
 #endif

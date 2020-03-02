@@ -6,13 +6,13 @@
 /*   By: merras <merras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 17:17:02 by merras            #+#    #+#             */
-/*   Updated: 2020/03/01 23:47:50 by merras           ###   ########.fr       */
+/*   Updated: 2020/03/02 00:26:23 by merras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "slaved.h"
 
-int	accept_master(t_slaved *slaved, SA *master_address)
+int	accept_master(t_slaved *slaved, t_sa *master_address)
 {
 	socklen_t	address_length;
 	int			err;
