@@ -16,7 +16,7 @@ OBJS = $(SRCS:.c=.o)
 SRCS_PATHS = $(addprefix $(SRCS_DIR)/, $(SRCS))
 OBJS_PATHS = $(addprefix $(OBJS_DIR)/, $(OBJS))
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -g -Wall -Wextra -Werror
 INCLUDES_FLAGS = $(addprefix -I, $(INCLUDES))
 
 all: $(NAME)

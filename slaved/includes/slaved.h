@@ -6,7 +6,7 @@
 /*   By: merras <merras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 17:17:15 by merras            #+#    #+#             */
-/*   Updated: 2020/03/02 00:26:07 by merras           ###   ########.fr       */
+/*   Updated: 2020/03/02 14:57:42 by merras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 # include "packet_utilities.h"
 
 # define SLAVED_PROGRAM_NAME "slaved_program"
-# define PORT 1337
+# define PORT 5000
 # define ERROR_WRAPPER(cond) err ? err : cond
 
 typedef struct sockaddr_in	t_sa;

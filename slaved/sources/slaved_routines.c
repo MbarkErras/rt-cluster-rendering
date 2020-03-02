@@ -6,7 +6,7 @@
 /*   By: merras <merras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 20:06:36 by merras            #+#    #+#             */
-/*   Updated: 2020/03/01 23:48:19 by merras           ###   ########.fr       */
+/*   Updated: 2020/03/02 16:02:43 by merras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,14 @@ static void	handle_packet(void *slaved)
 	queue_dequeue(&CAST(slaved, t_slaved *)->packets_queue, NULL);
 	pthread_mutex_unlock(&CAST(slaved, t_slaved *)->packets_queue_mx);
 	response = requests_dispatcher(request->content, slaved);
-	destroy_packet(request->content);
-	free(request);
 	if (write_packet(CAST(slaved, t_slaved *)->sockets[1], response) ||
 		response.type == TYPE_T_RESPONSE_FAILURE ||
 		CAST(request->content, t_packet *)->type == TYPE_T_REQUEST_COMPUTATION)
 	{
 		pthread_cancel(CAST(slaved, t_slaved *)->tid[0]);
-		pthread_exit(NULL);
 	}
+	destroy_packet(request->content);
+	free(request);
 }
 
 void		*handle_packets(void *slaved)
@@ -67,9 +66,6 @@ void		*receive_packets(void *slaved)
 				sizeof(t_packet)));
 		pthread_mutex_unlock(&CAST(slaved, t_slaved *)->packets_queue_mx);
 		if (request.type == TYPE_T_REQUEST_COMPUTATION)
-		{
 			LOG_WARN("receive_packets: enqueing a COMPUTATION, I am done.");
-			pthread_exit(NULL);
-		}
 	}
 }

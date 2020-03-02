@@ -6,7 +6,7 @@
 /*   By: merras <merras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 00:56:37 by merras            #+#    #+#             */
-/*   Updated: 2020/03/02 10:44:41 by merras           ###   ########.fr       */
+/*   Updated: 2020/03/02 14:57:46 by merras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # include "packet_utilities.h"
 # include "log.h"
 
-# define PORT 1337
+# define PORT 5000
 # define ERROR_WRAPPER(cond) err ? err : cond
 # define BUFFER_SIZE 69
 
@@ -71,6 +71,8 @@ typedef struct	s_task
 int				init_cluster(char *configuration_file, t_cluster *cluster);
 int				connect_slaves(t_cluster *cluster);
 int				init_slaves(t_cluster *cluster);
+
+void			*slave_routine(void *slave);
 
 void			*cluster_loadbalancer(void *cluster);
 void			delete_nodes(t_slave *nodes, int size);

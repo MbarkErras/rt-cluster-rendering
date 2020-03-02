@@ -6,7 +6,7 @@
 /*   By: merras <merras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 00:56:49 by merras            #+#    #+#             */
-/*   Updated: 2020/03/02 10:41:15 by merras           ###   ########.fr       */
+/*   Updated: 2020/03/02 14:57:32 by merras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	init_cluster(char *configuration_file, t_cluster *cluster)
 	ft_bzero(cluster, sizeof(t_cluster));
 	err = ERROR_WRAPPER(get_configuration(configuration_file, cluster) != 0);
 	err = ERROR_WRAPPER(connect_slaves(cluster) != 0);
+	LOG_DEBUG(">> %d", err);
 	err = ERROR_WRAPPER(init_computation(cluster));
 	err = ERROR_WRAPPER(init_slaves(cluster) != 0);
 	err = ERROR_WRAPPER(pthread_create(&cluster->loadbalancer_routine, NULL,

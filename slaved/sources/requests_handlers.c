@@ -6,7 +6,7 @@
 /*   By: merras <merras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 22:26:17 by merras            #+#    #+#             */
-/*   Updated: 2020/03/01 23:49:36 by merras           ###   ########.fr       */
+/*   Updated: 2020/03/02 16:51:48 by merras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int			write_pipe_slaved_program(t_packet *request, t_program *program,
 
 	if ((fd = open(SLAVED_PROGRAM_NAME, O_CREAT | O_WRONLY, 0777)) == -1)
 		return (1);
-	if (write_(fd, request->data, request->size))
+	if (write_(fd, request->data, request->size) != (int)request->size)
 		return (1);
 	if (pipe(stdin_pipe) == -1 || pipe(stdout_pipe) == -1)
 		return (1);
@@ -110,6 +110,7 @@ t_packet	execute_req_computation(t_packet *request, t_program *program)
 		return (FLAG_RESPONSE_PACKET(TYPE_T_RESPONSE_FAILURE));
 	err = ERROR_WRAPPER(read_(program->r_stdout, response.data, response.size)
 		!= (int)response.size);
+	LOG_WARN(">>>>>> %d.", err);
 	if (!err)
 	{
 		LOG_INFO("successful computation request execution: %d.",

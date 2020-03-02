@@ -6,7 +6,7 @@
 /*   By: merras <merras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 14:11:51 by merras            #+#    #+#             */
-/*   Updated: 2020/02/29 23:15:30 by merras           ###   ########.fr       */
+/*   Updated: 2020/03/02 14:00:31 by merras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int			write_packet(int fd, t_packet packet)
 		err = ERROR_WRAPPER(write(fd, &packet.size, sizeof(uint32_t)) == -1);
 		if (!err)
 			LOG_INFO("writing packet size: %d.", packet.size);
-		err = ERROR_WRAPPER(write_(fd, packet.data, packet.size) == -1);
+		err = ERROR_WRAPPER(write_(fd, packet.data, packet.size) != (int)packet.size);
 		if (!err)
 			LOG_INFO("writing packet data.");
 		else

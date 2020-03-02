@@ -6,7 +6,7 @@
 /*   By: merras <merras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/29 21:44:36 by merras            #+#    #+#             */
-/*   Updated: 2020/02/29 21:54:38 by merras           ###   ########.fr       */
+/*   Updated: 2020/03/02 15:19:15 by merras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	list_sort(t_dstruct_list *list, int (*compare)(void *, void *))
 		nsorted = 0;
 		while (iterator->next)
 		{
-			if (compare(iterator, iterator->next))
+			if (compare(iterator->content, iterator->next->content))
 			{
 				content = iterator->next->content;
 				iterator->next->content = content;

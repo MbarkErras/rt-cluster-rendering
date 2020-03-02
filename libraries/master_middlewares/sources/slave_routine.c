@@ -6,7 +6,7 @@
 /*   By: merras <merras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 09:09:11 by merras            #+#    #+#             */
-/*   Updated: 2020/03/02 10:26:44 by merras           ###   ########.fr       */
+/*   Updated: 2020/03/02 13:49:37 by merras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	slave_read_dolan(t_cluster *cluster, void *caller)
 
 void	success_response_dolan(t_cluster *cluster, t_dstruct_node *task)
 {
-	if (CAST(task->content, t_task *)->response->type ==
+	if (CAST(task->content, t_task *)->request->type ==
 		TYPE_T_REQUEST_COMPUTATION)
 	{
 		LOG_DEBUG("enquing a request to done queue.");

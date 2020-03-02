@@ -6,7 +6,7 @@
 /*   By: merras <merras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 15:45:31 by abiri             #+#    #+#             */
-/*   Updated: 2020/02/25 23:47:41 by merras           ###   ########.fr       */
+/*   Updated: 2020/03/02 16:05:09 by merras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	ft_send_final_image(t_rtv *rtv)
 	ft_putstr_fd(ft_itoa((int)rtv->max_h), fd);
 	ft_putstr_fd("\n\n\n\n\n\n\n\n", fd);
 	write(1, &size, 4);
-	write(1, rtv->mlx.img.data, size);
+	write(1, rtv->mlx.img.data + (int)rtv->min_h * rtv->scene.width * 4, size);
 }
 
 int	ft_headless_raytracer(t_rtv	*rtv, char *filename)

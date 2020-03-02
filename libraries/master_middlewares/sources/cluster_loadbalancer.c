@@ -6,7 +6,7 @@
 /*   By: merras <merras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 05:24:44 by merras            #+#    #+#             */
-/*   Updated: 2020/03/02 10:26:09 by merras           ###   ########.fr       */
+/*   Updated: 2020/03/02 16:44:31 by merras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	*cluster_loadbalancer(void *cluster)
 		cluster_loadbalancer_wait(cluster);
 		LOG_INFO("receiving a workload.");
 		task = CAST(cluster, t_cluster *)->computation.tasks_queue.head;
-		queue_dequeue(&CAST(cluster, t_cluster *)->computation.tasks_queue,
+		queue_dequeue(&CAST(cluster, t_cluster *)->computation.tasks_queue, //exception here
 			NULL);
 		pthread_mutex_unlock(&CAST(cluster, t_cluster *)->
 			computation.tasks_queue_mutex);

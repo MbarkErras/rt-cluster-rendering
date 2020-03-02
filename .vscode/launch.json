@@ -1,0 +1,21 @@
+{
+	// Use IntelliSense to learn about possible attributes.
+	// Hover to view descriptions of existing attributes.
+	// For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "asd",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "/Users/merras/rt-cluster-rendering/raytracer_master/raytracer_master",
+			"args": ["../cluster.conf", "../scene.xml"],
+			"stopAtEntry": false,
+			"cwd": "/Users/merras/rt-cluster-rendering/raytracer_master",
+			"environment": [],
+			"externalConsole": false,
+			"MIMode": "lldb",
+			"preLaunchTask": "gcc build active file"
+		}
+	]
+}
