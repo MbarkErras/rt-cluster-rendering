@@ -6,7 +6,7 @@
 /*   By: merras <merras@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 22:26:17 by merras            #+#    #+#             */
-/*   Updated: 2020/03/02 16:51:48 by merras           ###   ########.fr       */
+/*   Updated: 2020/03/02 21:23:04 by merras           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,6 @@ t_packet	execute_req_computation(t_packet *request, t_program *program)
 		return (FLAG_RESPONSE_PACKET(TYPE_T_RESPONSE_FAILURE));
 	err = ERROR_WRAPPER(read_(program->r_stdout, response.data, response.size)
 		!= (int)response.size);
-	LOG_WARN(">>>>>> %d.", err);
 	if (!err)
 	{
 		LOG_INFO("successful computation request execution: %d.",
